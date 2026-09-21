@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Playfair+Display&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle, #0a0a0a, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.left {
+  position: relative;
+  transition: transform 1s ease;
+}
+
+.move-left {
+  transform: translateX(-120px);
+}
+
+img {
+  width: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.glow {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(255,215,0,0.35), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  z-index: 1;
+  transition: 1s;
+  pointer-events: none;
+}
+
+.bright {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.card {
+  width: 350px;
+  min-height: 150px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: 1s;
+  white-space: pre-line;
+}
+
+.show-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hint {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-family: 'Playfair Display', serif;
+  animation: fadeInHint 2s ease;
+}
+
+@keyframes fadeInHint {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+/* partículas */
+.particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, gold, rgba(255,215,0,0.2));
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh) scale(1);
+    opacity: 1;
+  }
+}
+
+/* estrellas */
+.stars, .twinkling {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  animation: moveStars 200s linear infinite;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+.twinkling {
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: twinkle 6s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes moveStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .move-left {
+    transform: translateX(0);
+  }
+
+  img {
+    width: 200px;
+  }
+
+  .glow {
+    width: 450px;
+    height: 450px;
+  }
+
+  .card {
+    width: 90%;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}
